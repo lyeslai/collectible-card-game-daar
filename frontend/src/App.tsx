@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import styles from './styles.module.css'
 import * as ethereum from '@/lib/ethereum'
 import * as main from '@/lib/main'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 type Canceler = () => void
 const useAffect = (
