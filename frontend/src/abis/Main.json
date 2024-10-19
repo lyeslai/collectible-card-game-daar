@@ -1,0 +1,18 @@
+[
+  "constructor(address)",
+  "error OwnableInvalidOwner(address)",
+  "error OwnableUnauthorizedAccount(address)",
+  "event OwnershipTransferred(address indexed,address indexed)",
+  "function createCollection(string,string,string[])",
+  "function getAllCardsFromBlockChain() view returns (string[])",
+  "function getAllCollectionNames() view returns (string[])",
+  "function getCollectionFromId(uint256) view returns (address)",
+  "function getCollectionFromName(string) view returns (address)",
+  "function getCollectionIdFromName(string) view returns (uint256)",
+  "function getMarketPlace() view returns (address)",
+  "function getNbCollections() view returns (uint256)",
+  "function nbCollections() view returns (uint256)",
+  "function owner() view returns (address)",
+  "function renounceOwnership()",
+  "function transferOwnership(address)"
+]

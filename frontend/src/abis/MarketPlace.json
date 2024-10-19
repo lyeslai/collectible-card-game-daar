@@ -1,0 +1,17 @@
+[
+  "constructor(address)",
+  "error OwnableInvalidOwner(address)",
+  "error OwnableUnauthorizedAccount(address)",
+  "event Exchange(tuple(uint256,uint256,address),tuple(uint256,uint256,address))",
+  "event OwnershipTransferred(address indexed,address indexed)",
+  "function addCollection(uint256,address)",
+  "function aliveTrades() view returns (uint256)",
+  "function buyCard(uint256,string,uint256)",
+  "function owner() view returns (address)",
+  "function renounceOwnership()",
+  "function seeMarketPlace() view returns (tuple(string,uint256,string[],address,bool,tuple(string,uint256,address),uint256)[])",
+  "function sellCard(string,uint256,string[])",
+  "function tradesCount() view returns (uint256)",
+  "function transferOwnership(address)",
+  "function unSellCard(uint256)"
+]

@@ -1,0 +1,5 @@
+[
+  "function getNRandValues(uint256,uint256) view returns (uint256[])",
+  "function next(uint256,uint256[624]) pure returns (uint256, uint256[624], uint256)",
+  "function twist(uint256[624]) pure returns (uint256[624])"
+]
