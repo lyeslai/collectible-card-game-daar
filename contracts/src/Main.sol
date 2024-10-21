@@ -1,81 +1,34 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8;
+pragma solidity ^0.8.20;
 
 import "./Collection.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "./Booster.sol";
-import "./MarketPlace.sol";
+
 
 contract Main is Ownable {
-  uint public nbCollections;
-  mapping(string => uint) private _nameToId;
-  mapping(uint => Collection) private _idToCollection;
+  uint256 public nbCollections;
+  mapping(string => Collection) public collections;
 
-  MarketPlace private _marketPlace;
+  event CollectionCreated(string name, address collectionAddress);
 
-  constructor(address initialOwner) Ownable(initialOwner) {
-    nbCollections = 0;
-    _marketPlace = new MarketPlace(address(this));
-  }
+  constructor() {}
 
-  function createCollection(
-    string calldata name,
-    string calldata symbol,
-    string[] calldata uniqCards
-  ) external onlyOwner {
-    Collection collection = new Collection(owner(), name, symbol, uniqCards);
+  
+    function createCollection(
+        string calldata name,
+        string calldata symbol,
+        string[] calldata uniqCards
+    ) external onlyOwner {
+        Collection newCollection = new Collection(owner(), name, symbol, uniqCards);
+        collections[name] = newCollection;
+        nbCollections++;
 
-    _nameToId[name] = nbCollections;
-    _idToCollection[nbCollections] = collection;
-    _marketPlace.addCollection(nbCollections, collection);
-    nbCollections++;
-  }
-
-  function getMarketPlace() external view returns (MarketPlace) {
-    return _marketPlace;
-  }
-
-  function getCollectionFromId(uint id) public view returns (Collection) {
-    return _idToCollection[id];
-  }
-
-  function getCollectionFromName(
-    string calldata name
-  ) public view returns (Collection) {
-    return getCollectionFromId(_nameToId[name]);
-  }
-
-  function getCollectionIdFromName(
-    string calldata name
-  ) public view returns (uint256) {
-    return _nameToId[name];
-  }
-
-  function getNbCollections() external view returns (uint) {
-    return nbCollections;
-  }
-
-  function getAllCollectionNames() external view returns (string[] memory) {
-    string[] memory names = new string[](nbCollections);
-    for (uint i = 0; i < nbCollections; i++)
-      names[i] = getCollectionFromId(i).name();
-
-    return names;
-  }
-
-  function getAllCardsFromBlockChain() external view returns (string[] memory) {
-    uint256 totalSupply = 0;
-    for (uint i = 0; i < nbCollections; i++) {
-      Collection collection = getCollectionFromId(i);
-      totalSupply += collection.totalSupply();
+        emit CollectionCreated(name, address(newCollection));
     }
-    string[] memory cards = new string[](totalSupply);
-    uint256 index = 0;
-    for (uint i = 0; i < nbCollections; i++) {
-      Collection collection = getCollectionFromId(i);
-      for (uint j = 0; j < collection.totalSupply(); j++)
-        cards[index++] = collection.tokenURI(j);
+
+    // Voir une collection par nom
+    function getCollection(string calldata name) external view returns (Collection) {
+        return collections[name];
     }
-    return cards;
-  }
 }

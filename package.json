@@ -19,6 +19,7 @@
     "@mui/lab": "^5.0.0-alpha.151",
     "@mui/material": "^5.14.16",
     "axios": "^1.5.1",
+    "ethers": "^6.13.4",
     "pokemon-tcg-sdk-typescript": "^1.3.4",
     "pokemontcgsdk": "^2.0.0",
     "react-router-dom": "^6.17.0"

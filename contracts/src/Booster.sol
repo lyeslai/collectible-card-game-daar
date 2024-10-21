@@ -5,47 +5,39 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "./Collection.sol";
-import "./lib/MersenneTwister.sol";
+
 
 contract Booster is ERC20, ERC20Burnable {
   event BoosterResult(address, string[]);
-  uint8 public constant CARD_PER_BOOSTER = 10;
+  uint8 public constant CARD_PER_BOOSTER = 5;
   Collection public referenceCollection;
-  MersenneTwister public rng = new MersenneTwister();
 
-  mapping(address => string[]) public lastBooster;
+  event BoosterOpened (address indexed opener , string[] cards);
+
 
   constructor(
     string memory name,
     string memory symbol,
-    Collection collection
+    address collectionAddress
   ) ERC20(name, symbol) {
-    referenceCollection = collection;
+    referenceCollection = collection(collectionAddress);
   }
 
-  function mint(address to, uint256 amount) external {
+  function mint(address to, uint256 amount) external onlyOwner{
     _mint(to, amount);
   }
 
-  function openBooster(address owner) public {
-    _burn(owner, 1);
-    uint256[] memory randValues = rng.getNRandValues(
-      CARD_PER_BOOSTER,
-      referenceCollection.getNbUniqCards()
-    );
-    string[] memory uris = new string[](CARD_PER_BOOSTER);
-    for (uint256 i = 0; i < CARD_PER_BOOSTER; i++) {
-      uint256 wonCard = randValues[i];
-      uris[i] = referenceCollection.UNIQ_CARDS(wonCard);
-    }
-    lastBooster[owner] = uris;
-    emit BoosterResult(owner, uris);
-    return;
-  }
+     function openBooster() external {
+        require(balanceOf(msg.sender) >= 1, "You don't have a booster to open");
+        _burn(msg.sender, 1); // Brûler un booster
 
-  function getLastBooster(
-    address owner
-  ) external view returns (string[] memory) {
-    return lastBooster[owner];
-  }
+        uint256 nbCards = referenceCollection.getNbUniqueCards();
+        string[] memory cards = new string[](CARDS_PER_BOOSTER);
+        for (uint256 i = 0; i < CARDS_PER_BOOSTER; i++) {
+            uint256 cardIndex = uint256(keccak256(abi.encodePacked(block.timestamp, msg.sender, i))) % nbCards;
+            cards[i] = referenceCollection.UNIQ_CARDS(cardIndex);
+        }
+
+        emit BoosterOpened(msg.sender, cards);
+    }
 }

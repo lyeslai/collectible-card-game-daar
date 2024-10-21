@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
-import "@openzeppelin/contracts/access/Ownable.sol";d
+import "@openzeppelin/contracts/access/Ownable.sol";
 import "./Booster.sol";
 
 contract Collection is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
@@ -45,7 +45,7 @@ contract Collection is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
         _safeMint(msg.sender, _nextTokenId);
         _setTokenURI(_nextTokenId, cardURI);
 
-        emit CardPurchased(msg.sender, _nextTokenId, cardURI);
+        emit cardPurchased(msg.sender, _nextTokenId, cardURI);
         _nextTokenId++;
     }
 
