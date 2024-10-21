@@ -5,132 +5,76 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
-import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";d
 import "./Booster.sol";
 
 contract Collection is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
-  uint256 private _nextTokenId;
-  uint256 public constant MAX_TOKENS = 10000;
-  string[] public UNIQ_CARDS;
-  Booster private booster;
+    uint256 private _nextTokenId;
+    string[] public UNIQ_CARDS;
+    uint256 public card_price = 0.01 ether;
+    uint256 public constant MAX_TOKENS = 10000;
+    Booster private booster; 
 
-  constructor(
-    address initialOwner,
-    string memory name,
-    string memory symbol,
-    string[] memory UniqCards
-  ) ERC721(name, symbol) Ownable(initialOwner) {
-    UNIQ_CARDS = UniqCards;
-    booster = new Booster(name, symbol, this);
-  }
+    event cardPurchased(address indexed buyer, uint256 tokenId, string cardURI );
 
-  function safeMint(address to, string memory uri) external onlyOwner {
-    if (_nextTokenId == MAX_TOKENS) revert("Max tokens reached");
-    uint256 tokenId = _nextTokenId++;
-    _safeMint(to, tokenId);
-    _setTokenURI(tokenId, uri);
-  }
-
-  function userCards() external view returns (string[] memory) {
-    string[] memory cards = new string[](balanceOf(msg.sender));
-    for (uint256 i = 0; i < cards.length; i++)
-      cards[i] = tokenURI(tokenOfOwnerByIndex(msg.sender, i));
-    return cards;
-  }
-
-  function compare(
-    string memory str1,
-    string memory str2
-  ) internal pure returns (bool) {
-    return
-      keccak256(abi.encodePacked(str1)) == keccak256(abi.encodePacked(str2));
-  }
-
-  function firstTokenOwned(
-    address owner,
-    string memory card
-  ) external view returns (uint256) {
-    for (uint256 i = 0; i < balanceOf(owner); i++) {
-      if (compare(tokenURI(tokenOfOwnerByIndex(owner, i)), card))
-        return tokenOfOwnerByIndex(owner, i);
+    // Constructeur pour initialiser la collection de cartes
+    constructor(
+        address initialOwner,
+        string memory name,
+        string memory symbol,
+        string[] memory UniqCards
+    ) ERC721(name, symbol) Ownable(initialOwner) {
+        UNIQ_CARDS = UniqCards;
+        booster = new Booster (name, symbol, address(this));
     }
-    revert(string.concat("Card not owned: ", card));
-  }
 
-  function getNbUniqCards() external view returns (uint256) {
-    return UNIQ_CARDS.length;
-  }
+        // Fonction pour créer de nouveaux tokens NFT (mint) avec un URI spécifique (seul l'owner peut le faire)
+    function safeMint(address to, string memory uri) external onlyOwner {
+        if (_nextTokenId == MAX_TOKENS) revert("Max tokens reached"); // Vérifie que le nombre maximum de tokens n'est pas atteint
+        uint256 tokenId = _nextTokenId++; // Génère le nouvel ID de token
+        _safeMint(to, tokenId); // Crée le NFT et l'assigne à l'adresse 'to'
+        _setTokenURI(tokenId, uri); // Associe les métadonnées (URI) au token
+    }
 
-  function buyBooster() external {
-    if (_nextTokenId + booster.CARD_PER_BOOSTER() > MAX_TOKENS)
-      revert("Max tokens reached");
-    booster.mint(msg.sender, 1);
-  }
 
-  function openBooster() external {
-    booster.openBooster(msg.sender);
-  }
+    function buyCard(uint256 cardId) external payable {
+        require(msg.value == card_price, "Mauvaise valeur");
+        require (cardId < UNIQ_CARDS.length, "Carte Inexistante");
 
-  function buyAndOpenBooster() external {
-    if (_nextTokenId + booster.CARD_PER_BOOSTER() > MAX_TOKENS)
-      revert("Max tokens reached");
-    booster.mint(msg.sender, 1);
-    booster.openBooster(msg.sender);
-  }
+        string memory cardURI = UNIQ_CARDS[cardId];
+        _safeMint(msg.sender, _nextTokenId);
+        _setTokenURI(_nextTokenId, cardURI);
 
-  function getLastBooster() external view returns (string[] memory) {
-    return booster.getLastBooster(msg.sender);
-  }
+        emit CardPurchased(msg.sender, _nextTokenId, cardURI);
+        _nextTokenId++;
+    }
 
-  function getBooster() external view returns (Booster) {
-    return booster;
-  }
 
-  function userBoosters() external view returns (uint256) {
-    return booster.balanceOf(msg.sender);
-  }
+    // Fonction pour récupérer toutes les cartes d'un utilisateur sous forme d'URIs
+    function userCards() external view returns (string[] memory) {
+        string[] memory cards = new string[](balanceOf(msg.sender)); // Tableau pour stocker les URIs des cartes de l'utilisateur
+        for (uint256 i = 0; i < cards.length; i++) {
+            cards[i] = tokenURI(tokenOfOwnerByIndex(msg.sender, i)); // Récupère l'URI pour chaque token
+        }
+        return cards; // Renvoie le tableau d'URIs
+    }
 
-  function superTransferFrom(
-    address from,
-    address to,
-    uint256 tokenId
-  ) external onlyOwner {
-    _transfer(from, to, tokenId);
-  }
 
-  function _update(
-    address to,
-    uint256 tokenId,
-    address auth
-  ) internal override(ERC721, ERC721Enumerable) returns (address) {
-    return super._update(to, tokenId, auth);
-  }
+  function tokenURI(uint256 tokenId)
+        public
+        view
+        override(ERC721, ERC721URIStorage)
+        returns (string memory)
+    {
+        return super.tokenURI(tokenId);
+    }
 
-  function _increaseBalance(
-    address account,
-    uint128 value
-  ) internal override(ERC721, ERC721Enumerable) {
-    super._increaseBalance(account, value);
-  }
-
-  function tokenURI(
-    uint256 tokenId
-  ) public view override(ERC721, ERC721URIStorage) returns (string memory) {
-    return super.tokenURI(tokenId);
-  }
-
-  function supportsInterface(
-    bytes4 interfaceId
-  )
-    public
-    view
-    override(ERC721, ERC721Enumerable, ERC721URIStorage)
-    returns (bool)
-  {
-    return super.supportsInterface(interfaceId);
-  }
-
-  function nbAvailableTokens() internal view returns (uint256) {
-    return _nextTokenId;
-  }
+    function supportsInterface(bytes4 interfaceId)
+        public
+        view
+        override(ERC721, ERC721Enumerable)
+        returns (bool)
+    {
+        return super.supportsInterface(interfaceId);
+    }
 }
