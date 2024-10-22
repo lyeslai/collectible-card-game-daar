@@ -1,49 +1,69 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
-import styles from './styles.module.css'
-import * as ethereum from '@/lib/ethereum'
-import * as main from '@/lib/main'
+import React, { useEffect, useState } from 'react';
+import Web3 from 'web3';
+import CollectionABI from './abis/Collection.json';
+import BoosterABI from './abis/Booster.json';
+import MainABI from './abis/Main.json';
 
-type Canceler = () => void
-const useAffect = (
-  asyncEffect: () => Promise<Canceler | void>,
-  dependencies: any[] = []
-) => {
-  const cancelerRef = useRef<Canceler | void>()
+const collectionAddress = "TON_ADRESSE_CONTRAT_COLLECTION";
+const boosterAddress = "TON_ADRESSE_CONTRAT_BOOSTER";
+const mainAddress = "TON_ADRESSE_CONTRAT_MAIN";
+
+function App() {
+  const [account, setAccount] = useState("");
+  const [web3, setWeb3] = useState(null);
+  const [collectionContract, setCollectionContract] = useState(null);
+  const [boosterContract, setBoosterContract] = useState(null);
+  const [mainContract, setMainContract] = useState(null);
+
   useEffect(() => {
-    asyncEffect()
-      .then(canceler => (cancelerRef.current = canceler))
-      .catch(error => console.warn('Uncatched error', error))
-    return () => {
-      if (cancelerRef.current) {
-        cancelerRef.current()
-        cancelerRef.current = undefined
+    // Connexion à Metamask et récupération du compte utilisateur
+    const loadWeb3 = async () => {
+      if (window.ethereum) {
+        const web3Instance = new Web3(window.ethereum);
+        setWeb3(web3Instance);
+
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        setAccount(accounts[0]);
+
+        // Connexion aux contrats
+        const collection = new web3Instance.eth.Contract(CollectionABI, collectionAddress);
+        const booster = new web3Instance.eth.Contract(BoosterABI, boosterAddress);
+        const main = new web3Instance.eth.Contract(MainABI, mainAddress);
+
+        setCollectionContract(collection);
+        setBoosterContract(booster);
+        setMainContract(main);
+      } else {
+        alert("Please install Metamask!");
       }
+    };
+
+    loadWeb3();
+  }, []);
+
+  const buyCard = async (cardId) => {
+    if (collectionContract && account) {
+      const cardPrice = Web3.utils.toWei('0.01', 'ether'); // Le prix de la carte en wei
+      await collectionContract.methods.buyCard(cardId).send({ from: account, value: cardPrice });
+      alert('Carte achetée avec succès !');
     }
-  }, dependencies)
-}
+  };
 
-const useWallet = () => {
-  const [details, setDetails] = useState<ethereum.Details>()
-  const [contract, setContract] = useState<main.Main>()
-  useAffect(async () => {
-    const details_ = await ethereum.connect('metamask')
-    if (!details_) return
-    setDetails(details_)
-    const contract_ = await main.init(details_)
-    if (!contract_) return
-    setContract(contract_)
-  }, [])
-  return useMemo(() => {
-    if (!details || !contract) return
-    return { details, contract }
-  }, [details, contract])
-}
+  const openBooster = async () => {
+    if (boosterContract && account) {
+      await boosterContract.methods.openBooster().send({ from: account });
+      alert('Booster ouvert avec succès !');
+    }
+  };
 
-export const App = () => {
-  const wallet = useWallet()
   return (
-    <div className={styles.body}>
-      <h1>Welcome to Pokémon TCG</h1>
+    <div>
+      <h1>Collectible Card Game</h1>
+      <p>Compte connecté : {account}</p>
+      <button onClick={() => buyCard(0)}>Acheter la carte 0</button>
+      <button onClick={openBooster}>Ouvrir un booster</button>
     </div>
-  )
+  );
 }
+
+export default App;
