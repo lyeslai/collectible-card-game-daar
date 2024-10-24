@@ -3,10 +3,18 @@
 import React, { useEffect, useState } from 'react';
 import Web3 from 'web3';
 import Navbar from '../components/navbar';
-import CollectionABI from '../../../contracts/artifacts/src/Collection.sol/Collection.json'; // ABI du contrat Collection
+import CollectionData from '../../../contracts/artifacts/src/Collection.sol/Collection.json';  // ABI du contrat Collection
 import './Cards.css';
 
-const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";  // Adresse du contrat
+
+// Importation du fichier JSON
+
+const contractAddress = "0x5fbdb2315678afecb367f032d93f642f64180aa3"; // Accès à l'adresse du contrat
+
+
+// Utilisation de l'ABI et de l'adresse pour créer une instance du contrat
+
+  // Adresse du contrat
 
 const Cartes: React.FC = () => {
   const [account, setAccount] = useState<string | null>(null);
@@ -23,21 +31,22 @@ const Cartes: React.FC = () => {
           // Demande d'accès à MetaMask
           const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
           setAccount(accounts[0]);
-
+    
           // Créer une instance du contrat avec l'ABI et l'adresse du contrat
-          const nftContract = new web3.eth.Contract(CollectionABI.abi as any, contractAddress);
+          const nftContract = new web3.eth.Contract(CollectionData.abi as any, contractAddress);
           setContract(nftContract);
-
+    
+          // Vérifier si l'adresse du contrat est correcte
+          console.log('Contract address: ', contractAddress);
+    
           // Récupérer toutes les cartes mintées
           const totalSupply = await nftContract.methods.nextTokenId().call();
           setNextTokenId(totalSupply);
-
-          const cardArray = [];
-          for (let i = 0; i < totalSupply; i++) {
-            const cardURI = await nftContract.methods.tokenURI(i).call();
-            cardArray.push({ id: i, uri: cardURI });
-          }
-          setCards(cardArray);
+          
+          // Vérifier si le contrat et le compte sont bien initialisés
+          console.log('Contract instance: ', nftContract);
+          console.log('Account: ', accounts[0]);
+    
         } catch (error) {
           console.error("Erreur lors de la récupération des données blockchain:", error);
         }
@@ -46,6 +55,7 @@ const Cartes: React.FC = () => {
         setStatus("MetaMask n'est pas détecté");
       }
     };
+    
 
     loadBlockchainData();
   }, []);
@@ -56,18 +66,25 @@ const Cartes: React.FC = () => {
       setStatus("Contrat ou compte non disponible.");
       return;
     }
-
+  
     try {
-      await contract.methods.mint(account).send({ from: account, gas: 500000 });
+      const collectionId = 1; // Par exemple, utilisez l'ID de la collection que vous souhaitez utiliser.
+      
+      console.log('Contract:', contract);
+      console.log('Account:', account);
+  
+      // Appel à mint avec les deux paramètres requis
+      await contract.methods.mint(collectionId, account).send({ from: account, gas: 500000 });
       setStatus(`Carte NFT mintée avec succès pour le compte ${account}!`);
-
+  
       // Mettre à jour après le mint
       const newTokenId = await contract.methods.nextTokenId().call();
       setNextTokenId(newTokenId);
-
+  
       // Ajouter la nouvelle carte mintée
       const newCardURI = await contract.methods.tokenURI(newTokenId - 1).call();
       setCards([...cards, { id: newTokenId - 1, uri: newCardURI }]);
+  
     } catch (error) {
       console.error("Erreur lors du mint : ", error);
       setStatus("Erreur lors du mint.");

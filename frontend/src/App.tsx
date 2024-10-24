@@ -4,9 +4,14 @@ import Web3 from 'web3';
 import Home from './pages/Home';
 
 import Cartes from './pages/Cards';
-import CollectionABI from '../../contracts/artifacts/src/Collection.sol/Collection.json'; // ABI du contrat Collection
+import CollectionData from '../../contracts/artifacts/src/Collection.sol/Collection.json';  // ABI du contrat Collection
 
-const contractAddress = "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0";  // Adresse de votre contrat Collection déployé
+
+
+// Importation du fichier JSON
+
+const contractAddress = "0x5fbdb2315678afecb367f032d93f642f64180aa3"; // Accès à l'adresse du contrat
+// Adresse de votre contrat Collection déployé
 
 const App = () => {
   const [web3, setWeb3] = useState(null);
@@ -27,7 +32,7 @@ const App = () => {
           setAccount(accounts[0]);
 
           // Création de l'instance du contrat
-          const contractInstance = new web3Instance.eth.Contract(CollectionABI.abi, contractAddress);
+          const contractInstance = new web3Instance.eth.Contract(CollectionData.abi, contractAddress);
           setContract(contractInstance);
 
           // Récupération du nextTokenId

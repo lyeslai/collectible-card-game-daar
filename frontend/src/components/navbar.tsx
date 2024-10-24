@@ -11,7 +11,7 @@ const Navbar: React.FC = () => {
       </div>
       <nav>
         <ul>
-          <li><a href="#cartes">Cartes</a></li>
+          <li><a href="/cartes">Cartes</a></li>
           <li><a href="#market">Market</a></li>
           <li><a href="#mes-cartes">Mes Cartes</a></li>
           <li><a href="#booster">Booster</a></li>
