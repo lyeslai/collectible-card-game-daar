@@ -1,0 +1,1252 @@
+[
+  {
+    "name": "Aggron",
+    "rarity": "Rare Holo",
+    "set": "HS—Triumphant"
+  },
+  {
+    "name": "Weedle",
+    "rarity": "Common",
+    "set": "Primal Clash"
+  },
+  {
+    "name": "Ampharos",
+    "rarity": "Rare Holo",
+    "set": "Platinum"
+  },
+  {
+    "name": "Ampharos",
+    "rarity": "Rare Holo",
+    "set": "Secret Wonders"
+  },
+  {
+    "name": "Bulbasaur",
+    "rarity": "Common",
+    "set": "Detective Pikachu"
+  },
+  {
+    "name": "Dratini",
+    "rarity": "Rare Holo",
+    "set": "Dragon Vault"
+  },
+  {
+    "name": "Caterpie",
+    "rarity": "Unknown",
+    "set": "McDonald's Collection 2019"
+  },
+  {
+    "name": "Absol G",
+    "rarity": "Rare Holo",
+    "set": "Supreme Victors"
+  },
+  {
+    "name": "Aerodactyl",
+    "rarity": "Rare Holo",
+    "set": "Legend Maker"
+  },
+  {
+    "name": "Absol",
+    "rarity": "Rare Holo",
+    "set": "Dragon"
+  },
+  {
+    "name": "Venusaur",
+    "rarity": "Unknown",
+    "set": "Pokémon Rumble"
+  },
+  {
+    "name": "Ampharos",
+    "rarity": "Rare Holo",
+    "set": "Aquapolis"
+  },
+  {
+    "name": "Alakazam",
+    "rarity": "Rare Holo",
+    "set": "Base Set 2"
+  },
+  {
+    "name": "Arcanine",
+    "rarity": "Rare Holo",
+    "set": "HeartGold & SoulSilver"
+  },
+  {
+    "name": "Beedrill δ",
+    "rarity": "Rare Holo",
+    "set": "Delta Species"
+  },
+  {
+    "name": "Azumarill",
+    "rarity": "Rare Holo",
+    "set": "Team Rocket Returns"
+  },
+  {
+    "name": "Blaine's Moltres",
+    "rarity": "Rare Holo",
+    "set": "Gym Heroes"
+  },
+  {
+    "name": "Aerodactyl",
+    "rarity": "Rare Holo",
+    "set": "Fossil"
+  },
+  {
+    "name": "Celebi & Venusaur-GX",
+    "rarity": "Rare Holo GX",
+    "set": "Team Up"
+  },
+  {
+    "name": "Caterpie",
+    "rarity": "Common",
+    "set": "Flashfire"
+  },
+  {
+    "name": "Bastiodon",
+    "rarity": "Rare",
+    "set": "POP Series 6"
+  },
+  {
+    "name": "Arcanine",
+    "rarity": "Rare Holo",
+    "set": "Aquapolis"
+  },
+  {
+    "name": "Altaria",
+    "rarity": "Rare Holo",
+    "set": "HS—Triumphant"
+  },
+  {
+    "name": "Blastoise",
+    "rarity": "Rare Holo",
+    "set": "Platinum"
+  },
+  {
+    "name": "Altaria",
+    "rarity": "Rare Holo",
+    "set": "Dragon"
+  },
+  {
+    "name": "Blastoise",
+    "rarity": "Rare Holo",
+    "set": "Secret Wonders"
+  },
+  {
+    "name": "Articuno",
+    "rarity": "Rare Holo",
+    "set": "Fossil"
+  },
+  {
+    "name": "Blaziken FB",
+    "rarity": "Rare Holo",
+    "set": "Supreme Victors"
+  },
+  {
+    "name": "Crobat δ",
+    "rarity": "Rare Holo",
+    "set": "Delta Species"
+  },
+  {
+    "name": "Lucario",
+    "rarity": "Rare",
+    "set": "POP Series 6"
+  },
+  {
+    "name": "Metapod",
+    "rarity": "Uncommon",
+    "set": "Flashfire"
+  },
+  {
+    "name": "Blastoise",
+    "rarity": "Rare Holo",
+    "set": "Base Set 2"
+  },
+  {
+    "name": "Brock's Rhydon",
+    "rarity": "Rare Holo",
+    "set": "Gym Heroes"
+  },
+  {
+    "name": "Azumarill",
+    "rarity": "Rare Holo",
+    "set": "HeartGold & SoulSilver"
+  },
+  {
+    "name": "Ludicolo",
+    "rarity": "Rare",
+    "set": "Detective Pikachu"
+  },
+  {
+    "name": "Weedle",
+    "rarity": "Common",
+    "set": "Team Up"
+  },
+  {
+    "name": "Aggron",
+    "rarity": "Rare Holo",
+    "set": "Legend Maker"
+  },
+  {
+    "name": "Dark Ampharos",
+    "rarity": "Rare Holo",
+    "set": "Team Rocket Returns"
+  },
+  {
+    "name": "Cherrim",
+    "rarity": "Unknown",
+    "set": "Pokémon Rumble"
+  },
+  {
+    "name": "Alolan Exeggutor",
+    "rarity": "Unknown",
+    "set": "McDonald's Collection 2019"
+  },
+  {
+    "name": "Kakuna",
+    "rarity": "Uncommon",
+    "set": "Primal Clash"
+  },
+  {
+    "name": "Tangela",
+    "rarity": "Common",
+    "set": "Steam Siege"
+  },
+  {
+    "name": "Banette",
+    "rarity": "Rare Holo",
+    "set": "Crystal Guardians"
+  },
+  {
+    "name": "Venusaur & Snivy-GX",
+    "rarity": "Rare Holo GX",
+    "set": "Cosmic Eclipse"
+  },
+  {
+    "name": "Snivy",
+    "rarity": "Common",
+    "set": "Black & White"
+  },
+  {
+    "name": "Caterpie",
+    "rarity": "Common",
+    "set": "Hidden Fates"
+  },
+  {
+    "name": "Mew",
+    "rarity": "Unknown",
+    "set": "Southern Islands"
+  },
+  {
+    "name": "Dialga",
+    "rarity": "Rare Holo",
+    "set": "Diamond & Pearl"
+  },
+  {
+    "name": "Caterpie",
+    "rarity": "Common",
+    "set": "Burning Shadows"
+  },
+  {
+    "name": "Ampharos",
+    "rarity": "Rare",
+    "set": "POP Series 7"
+  },
+  {
+    "name": "Blaine's Arcanine",
+    "rarity": "Rare Holo",
+    "set": "Gym Challenge"
+  },
+  {
+    "name": "Clefable",
+    "rarity": "Rare Holo",
+    "set": "Call of Legends"
+  },
+  {
+    "name": "Blaziken",
+    "rarity": "Rare Holo",
+    "set": "Emerald"
+  },
+  {
+    "name": "Surskit",
+    "rarity": "Common",
+    "set": "Plasma Blast"
+  },
+  {
+    "name": "Venusaur V",
+    "rarity": "Rare Holo V",
+    "set": "Champion's Path"
+  },
+  {
+    "name": "Oddish",
+    "rarity": "Common",
+    "set": "Ancient Origins"
+  },
+  {
+    "name": "Caterpie",
+    "rarity": "Common",
+    "set": "Sun & Moon"
+  },
+  {
+    "name": "Armaldo δ",
+    "rarity": "Rare Holo",
+    "set": "Holon Phantoms"
+  },
+  {
+    "name": "Dratini",
+    "rarity": "Rare Holo",
+    "set": "Dragon Vault"
+  },
+  {
+    "name": "Ariados",
+    "rarity": "Rare Holo",
+    "set": "Aquapolis"
+  },
+  {
+    "name": "Oddish",
+    "rarity": "Common",
+    "set": "Cosmic Eclipse"
+  },
+  {
+    "name": "Deoxys",
+    "rarity": "Rare Holo",
+    "set": "Emerald"
+  },
+  {
+    "name": "Snivy",
+    "rarity": "Common",
+    "set": "Black & White"
+  },
+  {
+    "name": "Chansey",
+    "rarity": "Rare Holo",
+    "set": "Base Set 2"
+  },
+  {
+    "name": "Ninetales",
+    "rarity": "Unknown",
+    "set": "Pokémon Rumble"
+  },
+  {
+    "name": "Beedrill",
+    "rarity": "Rare",
+    "set": "Primal Clash"
+  },
+  {
+    "name": "Manaphy",
+    "rarity": "Rare",
+    "set": "POP Series 6"
+  },
+  {
+    "name": "Pidgeot",
+    "rarity": "Unknown",
+    "set": "Southern Islands"
+  },
+  {
+    "name": "Dragonite δ",
+    "rarity": "Rare Holo",
+    "set": "Delta Species"
+  },
+  {
+    "name": "Drifblim FB",
+    "rarity": "Rare Holo",
+    "set": "Supreme Victors"
+  },
+  {
+    "name": "Ditto",
+    "rarity": "Rare Holo",
+    "set": "Fossil"
+  },
+  {
+    "name": "Clefable",
+    "rarity": "Rare Holo",
+    "set": "HeartGold & SoulSilver"
+  },
+  {
+    "name": "Cradily δ",
+    "rarity": "Rare Holo",
+    "set": "Holon Phantoms"
+  },
+  {
+    "name": "Celebi",
+    "rarity": "Rare Holo",
+    "set": "HS—Triumphant"
+  },
+  {
+    "name": "Gloom",
+    "rarity": "Uncommon",
+    "set": "Ancient Origins"
+  },
+  {
+    "name": "Masquerain",
+    "rarity": "Rare",
+    "set": "Plasma Blast"
+  },
+  {
+    "name": "Dark Crobat",
+    "rarity": "Rare Holo",
+    "set": "Team Rocket Returns"
+  },
+  {
+    "name": "Cradily",
+    "rarity": "Rare Holo",
+    "set": "Legend Maker"
+  },
+  {
+    "name": "Weedle",
+    "rarity": "Common",
+    "set": "Champion's Path"
+  },
+  {
+    "name": "Blaine's Charizard",
+    "rarity": "Rare Holo",
+    "set": "Gym Challenge"
+  },
+  {
+    "name": "Butterfree",
+    "rarity": "Rare",
+    "set": "Flashfire"
+  },
+  {
+    "name": "Tangrowth",
+    "rarity": "Uncommon",
+    "set": "Steam Siege"
+  },
+  {
+    "name": "Morelull",
+    "rarity": "Common",
+    "set": "Detective Pikachu"
+  },
+  {
+    "name": "Crawdaunt",
+    "rarity": "Rare Holo",
+    "set": "Dragon"
+  },
+  {
+    "name": "Dragonair",
+    "rarity": "Rare Holo",
+    "set": "Dragon Vault"
+  },
+  {
+    "name": "Weedle",
+    "rarity": "Common",
+    "set": "Team Up"
+  },
+  {
+    "name": "Gallade",
+    "rarity": "Rare",
+    "set": "POP Series 7"
+  },
+  {
+    "name": "Metapod",
+    "rarity": "Uncommon",
+    "set": "Sun & Moon"
+  },
+  {
+    "name": "Magmar",
+    "rarity": "Unknown",
+    "set": "McDonald's Collection 2019"
+  },
+  {
+    "name": "Deoxys",
+    "rarity": "Rare Holo",
+    "set": "Call of Legends"
+  },
+  {
+    "name": "Blaziken",
+    "rarity": "Rare Holo",
+    "set": "Platinum"
+  },
+  {
+    "name": "Metapod",
+    "rarity": "Uncommon",
+    "set": "Hidden Fates"
+  },
+  {
+    "name": "Erika's Clefable",
+    "rarity": "Rare Holo",
+    "set": "Gym Heroes"
+  },
+  {
+    "name": "Charizard",
+    "rarity": "Rare Holo",
+    "set": "Secret Wonders"
+  },
+  {
+    "name": "Bellsprout",
+    "rarity": "Common",
+    "set": "Guardians Rising"
+  },
+  {
+    "name": "Dark Alakazam",
+    "rarity": "Rare Holo",
+    "set": "Team Rocket"
+  },
+  {
+    "name": "Venonat",
+    "rarity": "Common",
+    "set": "Phantom Forces"
+  },
+  {
+    "name": "Tangela",
+    "rarity": "Common",
+    "set": "Legendary Treasures"
+  },
+  {
+    "name": "Team Aqua's Cacturne",
+    "rarity": "Rare Holo",
+    "set": "Team Magma vs Team Aqua"
+  },
+  {
+    "name": "Pinsir",
+    "rarity": "Rare",
+    "set": "Next Destinies"
+  },
+  {
+    "name": "Weedle",
+    "rarity": "Common",
+    "set": "Plasma Freeze"
+  },
+  {
+    "name": "Alakazam",
+    "rarity": "Rare Holo",
+    "set": "Base"
+  },
+  {
+    "name": "Blastoise",
+    "rarity": "Rare",
+    "set": "POP Series 3"
+  },
+  {
+    "name": "Blaziken",
+    "rarity": "Rare Holo",
+    "set": "Great Encounters"
+  },
+  {
+    "name": "Oddish",
+    "rarity": "Common",
+    "set": "Boundaries Crossed"
+  },
+  {
+    "name": "Altaria",
+    "rarity": "Rare Holo",
+    "set": "Deoxys"
+  },
+  {
+    "name": "Bulbasaur",
+    "rarity": "Common",
+    "set": "Dark Explorers"
+  },
+  {
+    "name": "Ho-Oh",
+    "rarity": "Rare",
+    "set": "POP Series 5"
+  },
+  {
+    "name": "Exeggcute",
+    "rarity": "Common",
+    "set": "Ultra Prism"
+  },
+  {
+    "name": "Shuckle",
+    "rarity": "Uncommon",
+    "set": "Fates Collide"
+  },
+  {
+    "name": "Tangela",
+    "rarity": "Common",
+    "set": "Lost Thunder"
+  },
+  {
+    "name": "Jirachi",
+    "rarity": "Rare Holo",
+    "set": "HS—Unleashed"
+  },
+  {
+    "name": "Turtwig",
+    "rarity": "Promo",
+    "set": "DP Black Star Promos"
+  },
+  {
+    "name": "Celebi V",
+    "rarity": "Rare Holo V",
+    "set": "Sword & Shield"
+  },
+  {
+    "name": "Pikachu",
+    "rarity": "Promo",
+    "set": "Wizards Black Star Promos"
+  },
+  {
+    "name": "Weedle",
+    "rarity": "Common",
+    "set": "Vivid Voltage"
+  },
+  {
+    "name": "Venusaur-EX",
+    "rarity": "Rare Holo EX",
+    "set": "XY"
+  },
+  {
+    "name": "Blaziken",
+    "rarity": "Rare",
+    "set": "POP Series 1"
+  },
+  {
+    "name": "Turtwig",
+    "rarity": "Common",
+    "set": "Plasma Storm"
+  },
+  {
+    "name": "Alakazam",
+    "rarity": "Rare Holo",
+    "set": "Legendary Collection"
+  },
+  {
+    "name": "Garchomp",
+    "rarity": "Rare",
+    "set": "POP Series 9"
+  },
+  {
+    "name": "Chimecho δ",
+    "rarity": "Rare",
+    "set": "POP Series 4"
+  },
+  {
+    "name": "Dark Ampharos",
+    "rarity": "Rare Holo",
+    "set": "Neo Destiny"
+  },
+  {
+    "name": "Ampharos",
+    "rarity": "Rare Holo",
+    "set": "Neo Revelation"
+  },
+  {
+    "name": "Charizard",
+    "rarity": "Rare Holo",
+    "set": "Arceus"
+  },
+  {
+    "name": "Alolan Sandshrew",
+    "rarity": "Unknown",
+    "set": "McDonald's Collection 2019"
+  },
+  {
+    "name": "Butterfree",
+    "rarity": "Rare",
+    "set": "Hidden Fates"
+  },
+  {
+    "name": "Dragonite",
+    "rarity": "Rare Holo",
+    "set": "Fossil"
+  },
+  {
+    "name": "Exploud",
+    "rarity": "Rare Holo",
+    "set": "Emerald"
+  },
+  {
+    "name": "Latias",
+    "rarity": "Rare",
+    "set": "POP Series 7"
+  },
+  {
+    "name": "Pachirisu",
+    "rarity": "Rare",
+    "set": "POP Series 6"
+  },
+  {
+    "name": "Charmander",
+    "rarity": "Common",
+    "set": "Detective Pikachu"
+  },
+  {
+    "name": "Team Aqua's Crawdaunt",
+    "rarity": "Rare Holo",
+    "set": "Team Magma vs Team Aqua"
+  },
+  {
+    "name": "Gyarados",
+    "rarity": "Rare Holo",
+    "set": "HeartGold & SoulSilver"
+  },
+  {
+    "name": "M Venusaur-EX",
+    "rarity": "Rare Holo EX",
+    "set": "XY"
+  },
+  {
+    "name": "Beautifly",
+    "rarity": "Rare Holo",
+    "set": "Deoxys"
+  },
+  {
+    "name": "Ivysaur",
+    "rarity": "Uncommon",
+    "set": "Dark Explorers"
+  },
+  {
+    "name": "Chimchar",
+    "rarity": "Promo",
+    "set": "DP Black Star Promos"
+  },
+  {
+    "name": "Weepinbell",
+    "rarity": "Uncommon",
+    "set": "Guardians Rising"
+  },
+  {
+    "name": "Deoxys δ",
+    "rarity": "Rare",
+    "set": "POP Series 4"
+  },
+  {
+    "name": "Gloom",
+    "rarity": "Uncommon",
+    "set": "Boundaries Crossed"
+  },
+  {
+    "name": "Venomoth",
+    "rarity": "Rare",
+    "set": "Phantom Forces"
+  },
+  {
+    "name": "Dialga",
+    "rarity": "Rare Holo",
+    "set": "Call of Legends"
+  },
+  {
+    "name": "Delcatty",
+    "rarity": "Rare Holo",
+    "set": "Legend Maker"
+  },
+  {
+    "name": "Tangrowth",
+    "rarity": "Rare",
+    "set": "Legendary Treasures"
+  },
+  {
+    "name": "Delcatty",
+    "rarity": "Rare Holo",
+    "set": "Platinum"
+  },
+  {
+    "name": "Kakuna",
+    "rarity": "Common",
+    "set": "Champion's Path"
+  },
+  {
+    "name": "Dark Arbok",
+    "rarity": "Rare Holo",
+    "set": "Team Rocket"
+  },
+  {
+    "name": "Azumarill",
+    "rarity": "Rare Holo",
+    "set": "Aquapolis"
+  },
+  {
+    "name": "Dark Crobat",
+    "rarity": "Rare Holo",
+    "set": "Neo Destiny"
+  },
+  {
+    "name": "Flygon",
+    "rarity": "Rare Holo",
+    "set": "Dragon"
+  },
+  {
+    "name": "Pineco",
+    "rarity": "Common",
+    "set": "Flashfire"
+  },
+  {
+    "name": "Lugia",
+    "rarity": "Rare",
+    "set": "POP Series 5"
+  },
+  {
+    "name": "Articuno",
+    "rarity": "Rare Holo",
+    "set": "Legendary Collection"
+  },
+  {
+    "name": "Dragonair",
+    "rarity": "Rare Holo",
+    "set": "Dragon Vault"
+  },
+  {
+    "name": "Espeon δ",
+    "rarity": "Rare Holo",
+    "set": "Delta Species"
+  },
+  {
+    "name": "Cresselia",
+    "rarity": "Rare Holo",
+    "set": "Great Encounters"
+  },
+  {
+    "name": "Dusknoir",
+    "rarity": "Rare Holo",
+    "set": "Diamond & Pearl"
+  },
+  {
+    "name": "Brock's Ninetales",
+    "rarity": "Rare Holo",
+    "set": "Gym Challenge"
+  },
+  {
+    "name": "Metagross",
+    "rarity": "Rare",
+    "set": "POP Series 1"
+  },
+  {
+    "name": "Onix",
+    "rarity": "Unknown",
+    "set": "Southern Islands"
+  },
+  {
+    "name": "Entei",
+    "rarity": "Rare Holo",
+    "set": "Secret Wonders"
+  },
+  {
+    "name": "Charizard",
+    "rarity": "Rare Holo",
+    "set": "Base Set 2"
+  },
+  {
+    "name": "Froslass",
+    "rarity": "Rare Holo",
+    "set": "Arceus"
+  },
+  {
+    "name": "Grotle",
+    "rarity": "Uncommon",
+    "set": "Plasma Storm"
+  },
+  {
+    "name": "Flareon",
+    "rarity": "Rare",
+    "set": "POP Series 3"
+  },
+  {
+    "name": "Hoppip",
+    "rarity": "Common",
+    "set": "Steam Siege"
+  },
+  {
+    "name": "Metapod",
+    "rarity": "Uncommon",
+    "set": "Burning Shadows"
+  },
+  {
+    "name": "Roselia",
+    "rarity": "Common",
+    "set": "Sword & Shield"
+  },
+  {
+    "name": "Manaphy",
+    "rarity": "Rare",
+    "set": "POP Series 9"
+  },
+  {
+    "name": "Vileplume",
+    "rarity": "Rare",
+    "set": "Ancient Origins"
+  },
+  {
+    "name": "Lileep",
+    "rarity": "Uncommon",
+    "set": "Plasma Blast"
+  },
+  {
+    "name": "Seedot",
+    "rarity": "Common",
+    "set": "Next Destinies"
+  },
+  {
+    "name": "Kakuna",
+    "rarity": "Uncommon",
+    "set": "Team Up"
+  },
+  {
+    "name": "Drapion",
+    "rarity": "Rare Holo",
+    "set": "HS—Triumphant"
+  },
+  {
+    "name": "Deoxys δ",
+    "rarity": "Rare Holo",
+    "set": "Holon Phantoms"
+  },
+  {
+    "name": "Yanma",
+    "rarity": "Common",
+    "set": "Ultra Prism"
+  },
+  {
+    "name": "Charmander",
+    "rarity": "Common",
+    "set": "Dragon Majesty"
+  },
+  {
+    "name": "Ampharos",
+    "rarity": "Rare Holo",
+    "set": "Unseen Forces"
+  },
+  {
+    "name": "Hoppip",
+    "rarity": "Common",
+    "set": "Dragons Exalted"
+  },
+  {
+    "name": "Togepi",
+    "rarity": "Unknown",
+    "set": "Southern Islands"
+  },
+  {
+    "name": "Venusaur",
+    "rarity": "Rare Holo",
+    "set": "Dark Explorers"
+  },
+  {
+    "name": "Electivire",
+    "rarity": "Rare Holo",
+    "set": "Diamond & Pearl"
+  },
+  {
+    "name": "Skiploom",
+    "rarity": "Uncommon",
+    "set": "Steam Siege"
+  },
+  {
+    "name": "Mamoswine",
+    "rarity": "Rare Holo",
+    "set": "HS—Triumphant"
+  },
+  {
+    "name": "Gloom",
+    "rarity": "Uncommon",
+    "set": "Cosmic Eclipse"
+  },
+  {
+    "name": "Dark Electrode",
+    "rarity": "Rare Holo",
+    "set": "Team Rocket Returns"
+  },
+  {
+    "name": "Yanmega",
+    "rarity": "Uncommon",
+    "set": "Ultra Prism"
+  },
+  {
+    "name": "Roselia",
+    "rarity": "Common",
+    "set": "Sword & Shield"
+  },
+  {
+    "name": "Electivire FB",
+    "rarity": "Rare Holo",
+    "set": "Supreme Victors"
+  },
+  {
+    "name": "Hitmontop",
+    "rarity": "Rare Holo",
+    "set": "HeartGold & SoulSilver"
+  },
+  {
+    "name": "Gengar",
+    "rarity": "Rare Holo",
+    "set": "Legend Maker"
+  },
+  {
+    "name": "Heatran",
+    "rarity": "Rare Holo",
+    "set": "Arceus"
+  },
+  {
+    "name": "Cradily",
+    "rarity": "Rare",
+    "set": "Plasma Blast"
+  },
+  {
+    "name": "Flygon",
+    "rarity": "Rare",
+    "set": "POP Series 4"
+  },
+  {
+    "name": "Golem",
+    "rarity": "Rare Holo",
+    "set": "Dragon"
+  },
+  {
+    "name": "Kakuna",
+    "rarity": "Uncommon",
+    "set": "Vivid Voltage"
+  },
+  {
+    "name": "Tangela",
+    "rarity": "Common",
+    "set": "Primal Clash"
+  },
+  {
+    "name": "Gardevoir",
+    "rarity": "Rare Holo",
+    "set": "Emerald"
+  },
+  {
+    "name": "Flareon δ",
+    "rarity": "Rare Holo",
+    "set": "Delta Species"
+  },
+  {
+    "name": "Team Aqua's Kyogre",
+    "rarity": "Rare Holo",
+    "set": "Team Magma vs Team Aqua"
+  },
+  {
+    "name": "Gengar",
+    "rarity": "Rare Holo",
+    "set": "Fossil"
+  },
+  {
+    "name": "Dragonite",
+    "rarity": "Rare Holo",
+    "set": "Dragon Vault"
+  },
+  {
+    "name": "Darkrai",
+    "rarity": "Rare Holo",
+    "set": "Great Encounters"
+  },
+  {
+    "name": "Flygon",
+    "rarity": "Rare Holo",
+    "set": "Secret Wonders"
+  },
+  {
+    "name": "Servine",
+    "rarity": "Uncommon",
+    "set": "Black & White"
+  },
+  {
+    "name": "Bellossom",
+    "rarity": "Rare Holo",
+    "set": "Aquapolis"
+  },
+  {
+    "name": "Rayquaza",
+    "rarity": "Rare",
+    "set": "POP Series 1"
+  },
+  {
+    "name": "Erika's Venusaur",
+    "rarity": "Rare Holo",
+    "set": "Gym Challenge"
+  },
+  {
+    "name": "Yanma",
+    "rarity": "Common",
+    "set": "Phantom Forces"
+  },
+  {
+    "name": "Ariados",
+    "rarity": "Rare Holo",
+    "set": "Unseen Forces"
+  },
+  {
+    "name": "Bellossom",
+    "rarity": "Uncommon",
+    "set": "Ancient Origins"
+  },
+  {
+    "name": "Dialga",
+    "rarity": "Rare Holo",
+    "set": "Platinum"
+  },
+  {
+    "name": "Jolteon",
+    "rarity": "Rare",
+    "set": "POP Series 3"
+  },
+  {
+    "name": "Breloom",
+    "rarity": "Rare Holo",
+    "set": "Deoxys"
+  },
+  {
+    "name": "Electabuzz",
+    "rarity": "Promo",
+    "set": "Wizards Black Star Promos"
+  },
+  {
+    "name": "Charizard",
+    "rarity": "Rare Holo",
+    "set": "Legendary Collection"
+  },
+  {
+    "name": "Kricketot",
+    "rarity": "Common",
+    "set": "Next Destinies"
+  },
+  {
+    "name": "Magmortar",
+    "rarity": "Rare Holo",
+    "set": "HS—Unleashed"
+  },
+  {
+    "name": "Shuckle",
+    "rarity": "Uncommon",
+    "set": "Legendary Treasures"
+  },
+  {
+    "name": "Latios",
+    "rarity": "Rare",
+    "set": "POP Series 7"
+  },
+  {
+    "name": "Heatran",
+    "rarity": "Unknown",
+    "set": "Pokémon Rumble"
+  },
+  {
+    "name": "Blissey",
+    "rarity": "Rare Holo",
+    "set": "Neo Revelation"
+  },
+  {
+    "name": "Lapras",
+    "rarity": "Unknown",
+    "set": "McDonald's Collection 2019"
+  },
+  {
+    "name": "Tangrowth",
+    "rarity": "Rare",
+    "set": "Lost Thunder"
+  },
+  {
+    "name": "Charmeleon",
+    "rarity": "Uncommon",
+    "set": "Dragon Majesty"
+  },
+  {
+    "name": "Beedrill",
+    "rarity": "Rare",
+    "set": "Team Up"
+  },
+  {
+    "name": "Skiploom",
+    "rarity": "Uncommon",
+    "set": "Dragons Exalted"
+  },
+  {
+    "name": "Dark Donphan",
+    "rarity": "Rare Holo",
+    "set": "Neo Destiny"
+  },
+  {
+    "name": "Vileplume",
+    "rarity": "Rare Holo",
+    "set": "Boundaries Crossed"
+  },
+  {
+    "name": "Beedrill",
+    "rarity": "Uncommon",
+    "set": "Champion's Path"
+  },
+  {
+    "name": "Raichu",
+    "rarity": "Rare",
+    "set": "POP Series 9"
+  },
+  {
+    "name": "Piplup",
+    "rarity": "Promo",
+    "set": "DP Black Star Promos"
+  },
+  {
+    "name": "Burmy",
+    "rarity": "Common",
+    "set": "Fates Collide"
+  },
+  {
+    "name": "Paras",
+    "rarity": "Common",
+    "set": "Hidden Fates"
+  },
+  {
+    "name": "Blastoise",
+    "rarity": "Rare Holo",
+    "set": "Base"
+  },
+  {
+    "name": "Butterfree",
+    "rarity": "Rare",
+    "set": "Burning Shadows"
+  },
+  {
+    "name": "Seedot",
+    "rarity": "Common",
+    "set": "Flashfire"
+  },
+  {
+    "name": "Weedle",
+    "rarity": "Common",
+    "set": "XY"
+  },
+  {
+    "name": "Blastoise δ",
+    "rarity": "Rare Holo",
+    "set": "Crystal Guardians"
+  },
+  {
+    "name": "Charizard",
+    "rarity": "Rare Ultra",
+    "set": "Detective Pikachu"
+  },
+  {
+    "name": "Dialga",
+    "rarity": "Rare Holo",
+    "set": "Platinum"
+  },
+  {
+    "name": "Pachirisu",
+    "rarity": "Promo",
+    "set": "DP Black Star Promos"
+  },
+  {
+    "name": "Tangrowth",
+    "rarity": "Rare",
+    "set": "Primal Clash"
+  },
+  {
+    "name": "Rampardos",
+    "rarity": "Rare",
+    "set": "POP Series 6"
+  },
+  {
+    "name": "Nuzleaf",
+    "rarity": "Uncommon",
+    "set": "Flashfire"
+  },
+  {
+    "name": "Camerupt",
+    "rarity": "Rare Holo",
+    "set": "Crystal Guardians"
+  },
+  {
+    "name": "Bagon",
+    "rarity": "Rare Holo",
+    "set": "Dragon Vault"
+  },
+  {
+    "name": "Camerupt",
+    "rarity": "Rare Holo",
+    "set": "Deoxys"
+  },
+  {
+    "name": "Darkrai",
+    "rarity": "Rare Holo",
+    "set": "Great Encounters"
+  }
+]
