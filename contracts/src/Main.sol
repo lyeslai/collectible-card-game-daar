@@ -44,6 +44,10 @@ contract Main is Ownable {
         emit BoosterCreated(address(booster));
         emit MarketCreated(address(market));
     }
+    function mintCardToUser(address user, uint256 cardId) external onlyOwner {
+    collection.safeMint(user, collection.UNIQ_CARDS(cardId));
+}
+
 
     // Récupère l'adresse de la collection
     function getCollection() external view returns (Collection) {

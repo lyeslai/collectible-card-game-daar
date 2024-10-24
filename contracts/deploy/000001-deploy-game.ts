@@ -1,24 +1,58 @@
-import 'dotenv/config';
-import { DeployFunction } from 'hardhat-deploy/types';
+import { ethers } from 'hardhat';
+import fs from 'fs';
 
-const deployer: DeployFunction = async (hre) => {
-  if (hre.network.config.chainId !== 31337) return;
+async function main() {
+  const [deployer] = await ethers.getSigners();
+  console.log('Deploying contracts with the account:', deployer.address);
 
-  const { deployer } = await hre.getNamedAccounts();
-  const { deploy } = hre.deployments;
+  // Charger les cartes depuis le fichier cards.json
+  const cardsFile = fs.readFileSync('cards.json' , 'utf-8');
+  const uniqCards = JSON.parse(cardsFile).map((card: any) => card.name);
 
-  // Les arguments attendus par le constructeur de Main.sol
-  const collectionName = "My Pokemon Collection"; // Nom de la collection
-  const collectionSymbol = "POKE"; // Symbole de la collection
-  const uniqCards = ["Pikachu", "Bulbasaur", "Charmander", "Squirtle"]; // Cartes uniques
-  const ownerAddress = deployer; // Adresse du déployeur
+  // Déployer le contrat Market
+  console.log('Deploying Market contract...');
+  const Market = await ethers.getContractFactory('Market');
+  const market = await Market.deploy(deployer.address, deployer.address);
+  await market.deployed();
+  console.log('Market contract deployed at:', market.address);
 
-  // Déploiement du contrat Main avec les arguments requis
-  await deploy('Main', {
-    from: deployer,
-    args: [collectionName, collectionSymbol, uniqCards, ownerAddress], // Les 4 arguments
-    log: true,
+  // Déployer le contrat Collection
+  console.log('Deploying Collection contract...');
+  const Collection = await ethers.getContractFactory('Collection');
+  const collection = await Collection.deploy(
+    'Pokemon Collection', // Nom de la collection
+    'PKC',                // Symbole
+    uniqCards,            // Cartes uniques
+    market.address        // Adresse du Market
+  );
+  await collection.deployed();
+  console.log('Collection contract deployed at:', collection.address);
+
+  // Déployer le contrat Booster
+  console.log('Deploying Booster contract...');
+  const Booster = await ethers.getContractFactory('Booster');
+  const booster = await Booster.deploy(
+    'BoosterPack',        // Nom du Booster
+    'BSTR',               // Symbole du Booster
+    collection.address,   // Adresse de la Collection
+    deployer.address      // Adresse du propriétaire
+  );
+  await booster.deployed();
+  console.log('Booster contract deployed at:', booster.address);
+
+  // Sauvegarder les adresses des contrats dans un fichier JSON (optionnel)
+  const contractAddresses = {
+    collection: collection.address,
+    booster: booster.address,
+    market: market.address,
+  };
+  fs.writeFileSync('deployed-contracts.json', JSON.stringify(contractAddresses, null, 2));
+  console.log('Contract addresses saved to deployed-contracts.json');
+}
+
+main()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
   });
-};
-
-export default deployer;
