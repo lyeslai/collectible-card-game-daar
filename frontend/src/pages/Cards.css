@@ -1,72 +1,71 @@
-/* src/pages/Cartes.css */
-
 .cartes-page {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    background-color: #f0f0f0;
-  }
-  
-  .cartes-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  h1 {
-    margin-bottom: 20px;
-    font-size: 36px;
-    color: #333;
-  }
-  
-  .cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-  }
-  
-  .card {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .card img {
-    width: 100%;
-    border-radius: 8px;
-  }
-  
-  .mint-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #ffcc00;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 18px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .mint-button:hover {
-    background-color: #ff9900;
-  }
-  
-  /* Responsive */
-  @media (max-width: 768px) {
-    h1 {
-      font-size: 28px;
-    }
-  
-    .cards-grid {
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    }
-  
-    .mint-button {
-      font-size: 16px;
-    }
-  }
-  
+  padding: 20px;
+  background-color: #f5f5f5; /* Couleur de fond par défaut */
+  background-image: url('../assets/anime-art-fon-tekstura-pokemon.jpg'); /* Remplacez par le chemin de votre image */
+  background-size: cover; /* L'image couvre tout l'écran */
+  background-position: center; /* Centrer l'image */
+  background-attachment: fixed; /* L'image reste fixe lors du défilement */
+  background-repeat: no-repeat; /* Pas de répétition de l'image */
+  min-height: 100vh; /* S'assurer que la page couvre toute la hauteur */
+}
+.cartes-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.mint-section {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.mint-button {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.mint-button:hover {
+  background-color: #218838;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+}
+
+.card img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+.select-button {
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.select-button.selected {
+  background-color: #ff0000;
+}
+
+.select-button:hover {
+  background-color: #0056b3;
+}

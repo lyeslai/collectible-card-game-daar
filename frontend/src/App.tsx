@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Web3 from 'web3';
 import Home from './pages/Home';
-
+import Profile from './pages/Profile';
+import Booster from './pages/Booster';
 import Cartes from './pages/Cards';
 import CollectionData from '../../contracts/artifacts/src/Collection.sol/Collection.json';  // ABI du contrat Collection
 
@@ -70,6 +71,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cartes" element={<Cartes />} />
+        <Route path="/profile" element={<Profile />} /> 
+        <Route path="/booster" element={<Booster />} /> 
       </Routes>
     </Router>
 
