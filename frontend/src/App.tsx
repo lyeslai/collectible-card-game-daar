@@ -1,77 +1,73 @@
 import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Web3 from 'web3';
-import CollectionABI from '../src/abis/Collection.json'; // ABI du contrat Collection
+import Home from './pages/Home';
 
-const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";  // Remplacez par l'adresse de votre contrat déployé
+import Cartes from './pages/Cards';
+import CollectionABI from '../../contracts/artifacts/src/Collection.sol/Collection.json'; // ABI du contrat Collection
 
-const App: React.FC = () => {
-  const [account, setAccount] = useState<string | null>(null);
-  const [contract, setContract] = useState<any>(null);
-  const [nextTokenId, setNextTokenId] = useState<number | null>(null);
-  const [status, setStatus] = useState<string>("");
+const contractAddress = "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0";  // Adresse de votre contrat Collection déployé
+
+const App = () => {
+  const [web3, setWeb3] = useState(null);
+  const [contract, setContract] = useState(null);
+  const [account, setAccount] = useState(null);
+  const [nextTokenId, setNextTokenId] = useState(null);
 
   useEffect(() => {
-    const loadBlockchainData = async () => {
-      if (typeof window.ethereum !== 'undefined') {
-        const web3 = new Web3(window.ethereum);
+    const init = async () => {
+      if (window.ethereum) {
+        const web3Instance = new Web3(window.ethereum);
+        setWeb3(web3Instance);
+
         try {
-          // Demande d'accès à MetaMask
-          const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+          // Demande d'accès au compte
+          await window.ethereum.request({ method: 'eth_requestAccounts' });
+          const accounts = await web3Instance.eth.getAccounts();
           setAccount(accounts[0]);
 
-          // Créer une instance du contrat avec l'ABI et l'adresse du contrat
-          const nftContract = new web3.eth.Contract(CollectionABI as any, contractAddress);
-          setContract(nftContract);
+          // Création de l'instance du contrat
+          const contractInstance = new web3Instance.eth.Contract(CollectionABI.abi, contractAddress);
+          setContract(contractInstance);
 
-          // Récupérer le prochain Token ID
-          const tokenId = await nftContract.methods.nextTokenId().call();
+          // Récupération du nextTokenId
+          const tokenId = await contractInstance.methods.nextTokenId().call();
           setNextTokenId(tokenId);
         } catch (error) {
-          console.error("Erreur lors de la récupération des données blockchain:", error);
+          console.error("Erreur d'initialisation :", error);
         }
       } else {
-        console.error("MetaMask non détecté.");
-        setStatus("MetaMask n'est pas détecté");
+        console.log("Veuillez installer MetaMask!");
       }
     };
 
-    loadBlockchainData();
+    init();
   }, []);
 
-  // Fonction pour minter un NFT
   const mintNFT = async () => {
-    if (!contract || !account) {
-      setStatus("Contrat ou compte non disponible.");
-      return;
-    }
-  
+    if (!contract || !account) return;
+
     try {
-      // Appel de la fonction `mint` avec des paramètres de gas
-      await contract.methods.mint(account).send({ from: account, gas: 500000 });
-      setStatus(`Carte NFT mintée avec succès pour le compte ${account}!`);
-      
-      // Mettre à jour le prochain Token ID après le mint
-      const tokenId = await contract.methods.nextTokenId().call();
-      setNextTokenId(tokenId);
+      console.log("Tentative de mint pour le compte :", account);
+      const result = await contract.methods.mint(account).send({ from: account });
+      console.log("Résultat du mint :", result);
+
+      // Mise à jour du nextTokenId après le mint
+      const newTokenId = await contract.methods.nextTokenId().call();
+      setNextTokenId(newTokenId);
     } catch (error) {
-      console.error("Erreur lors du mint : ", error);
-      setStatus("Erreur lors du mint.");
+      console.error("Erreur lors du mint :", error);
     }
   };
-  
 
   return (
-    <div>
-      <h1>Collection de cartes NFT</h1>
-      <p>Compte connecté : {account || "Aucun compte détecté"}</p>
-      <p>Prochain Token ID : {nextTokenId !== null ? nextTokenId : "Chargement..."}</p>
+<Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/cartes" element={<Cartes />} />
+      </Routes>
+    </Router>
 
-      <button onClick={mintNFT} disabled={!account}>
-        Minter une carte NFT
-      </button>
-
-      <p>Status: {status}</p>
-    </div>
   );
 };
 

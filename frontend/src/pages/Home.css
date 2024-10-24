@@ -1,0 +1,60 @@
+/* src/pages/Home.css */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body, html {
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .home-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  /* Hero Section */
+  .hero {
+    position: relative;
+    flex: 1;
+  }
+  
+  .hero-image {
+    width: 100%;
+    height: 90vh;
+    object-fit: cover;
+  }
+  
+  .hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+  }
+  
+  .hero-text h1 {
+    font-size: 48px;
+    font-weight: bold;
+  }
+  
+  .hero-text p {
+    font-size: 24px;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero-text h1 {
+      font-size: 32px;
+    }
+  
+    .hero-text p {
+      font-size: 18px;
+    }
+  }
+  
