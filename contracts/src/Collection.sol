@@ -34,12 +34,15 @@ contract Collection is ERC721URIStorage, Ownable {
     function buyCard(uint256 cardId) external payable {
         require(msg.value == cardPrice, "Incorrect Ether value sent");
         require(cardId < UNIQ_CARDS.length, "Card does not exist");
+        
         string memory cardURI = UNIQ_CARDS[cardId];
         uint256 tokenId = _nextTokenId;
+
         _safeMint(msg.sender, tokenId);
         _setTokenURI(tokenId, cardURI);
         emit CardPurchased(msg.sender, tokenId, cardURI);
-        _nextTokenId++;
+        
+        _nextTokenId++;  // Incrémenter le token ID pour la prochaine carte
     }
 
     function listCardForSale(uint256 tokenId, uint256 price) external {
@@ -48,6 +51,12 @@ contract Collection is ERC721URIStorage, Ownable {
         market.listCardForSale(tokenId, price, msg.sender);
     }
 
+    // Récupère le nombre total de cartes disponibles
+    function getUniqCardsLength() public view returns (uint256) {
+        return UNIQ_CARDS.length;
+    }
+
+    // Override nécessaire pour ERC721URIStorage (seulement pour les URIs)
     function tokenURI(uint256 tokenId)
         public
         view
@@ -57,11 +66,7 @@ contract Collection is ERC721URIStorage, Ownable {
         return super.tokenURI(tokenId);
     }
 
-
-    function getUniqCardsLength() public view returns (uint256) {
-        return UNIQ_CARDS.length;
-    }
-
+    // Override de supportsInterface pour assurer la compatibilité
     function supportsInterface(bytes4 interfaceId)
         public
         view
@@ -70,6 +75,4 @@ contract Collection is ERC721URIStorage, Ownable {
     {
         return super.supportsInterface(interfaceId);
     }
-
-
 }
