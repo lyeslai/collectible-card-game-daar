@@ -2,80 +2,49 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Web3 from 'web3';
 import Home from './pages/Home';
+import Cards from './pages/Cards';
 import Profile from './pages/Profile';
-import Booster from './pages/Booster';
-import Cartes from './pages/Cards';
-import CollectionData from '../../contracts/artifacts/src/Collection.sol/Collection.json';  // ABI du contrat Collection
+
+import MainABI from './contracts.json';
+
+const contractAddress = "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707";
 
 
-
-// Importation du fichier JSON
-
-const contractAddress = "0x5fbdb2315678afecb367f032d93f642f64180aa3"; // Accès à l'adresse du contrat
-// Adresse de votre contrat Collection déployé
 
 const App = () => {
-  const [web3, setWeb3] = useState(null);
-  const [contract, setContract] = useState(null);
-  const [account, setAccount] = useState(null);
-  const [nextTokenId, setNextTokenId] = useState(null);
+  const [web3, setWeb3] = useState<Web3 | null>(null);
+  const [account, setAccount] = useState<string | null>(null);
+  const [mainContract, setMainContract] = useState<any>(null);
 
   useEffect(() => {
-    const init = async () => {
+    const initWeb3 = async () => {
       if (window.ethereum) {
-        const web3Instance = new Web3(window.ethereum);
-        setWeb3(web3Instance);
-
         try {
-          // Demande d'accès au compte
-          await window.ethereum.request({ method: 'eth_requestAccounts' });
-          const accounts = await web3Instance.eth.getAccounts();
+          const web3Instance = new Web3(window.ethereum);
+          const accounts = await web3Instance.eth.requestAccounts();
           setAccount(accounts[0]);
 
-          // Création de l'instance du contrat
-          const contractInstance = new web3Instance.eth.Contract(CollectionData.abi, contractAddress);
-          setContract(contractInstance);
-
-          // Récupération du nextTokenId
-          const tokenId = await contractInstance.methods.nextTokenId().call();
-          setNextTokenId(tokenId);
+          const contractInstance = new web3Instance.eth.Contract(MainABI.contracts.Main.abi as any, contractAddress);
+          setMainContract(contractInstance);
+          setWeb3(web3Instance);
         } catch (error) {
-          console.error("Erreur d'initialisation :", error);
+          console.error("Error initializing Web3 or contract:", error);
         }
       } else {
-        console.log("Veuillez installer MetaMask!");
+        console.error("Please install MetaMask.");
       }
     };
-
-    init();
+    initWeb3();
   }, []);
 
-  const mintNFT = async () => {
-    if (!contract || !account) return;
-
-    try {
-      console.log("Tentative de mint pour le compte :", account);
-      const result = await contract.methods.mint(account).send({ from: account });
-      console.log("Résultat du mint :", result);
-
-      // Mise à jour du nextTokenId après le mint
-      const newTokenId = await contract.methods.nextTokenId().call();
-      setNextTokenId(newTokenId);
-    } catch (error) {
-      console.error("Erreur lors du mint :", error);
-    }
-  };
-
   return (
-<Router>
-      <Routes>
+    <Router>
+      <Routes>s
         <Route path="/" element={<Home />} />
-        <Route path="/cartes" element={<Cartes />} />
-        <Route path="/profile" element={<Profile />} /> 
-        <Route path="/booster" element={<Booster />} /> 
+        <Route path="/cards" element={<Cards account={account} mainContract={mainContract} />} />
+        <Route path="/profile" element={<Profile account={account} mainContract={mainContract} web3={web3} />} />
       </Routes>
     </Router>
-
   );
 };
 
