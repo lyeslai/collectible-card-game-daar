@@ -1,52 +1,65 @@
-import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Web3 from 'web3';
-import Home from './pages/Home';
-import Cards from './pages/Cards';
-import Profile from './pages/Profile';
-import Booster from './pages/Booster'
-import MainABI from './contracts.json';
+import { useEffect, useMemo, useRef, useState } from 'react'
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import styles from './styles.module.css'
+import * as ethereum from '@/lib/ethereum'
+import * as main from '@/lib/main'
+import Home from './components/Home'
+import Profile from './components/Profile';
+import Booster from './components/Booster';
+import MarketPlace from './components/MarketPlace' ;
 
-const contractAddress = "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707";
-
-
-
-const App = () => {
-  const [web3, setWeb3] = useState<Web3 | null>(null);
-  const [account, setAccount] = useState<string | null>(null);
-  const [mainContract, setMainContract] = useState<any>(null);
-
+type Canceler = () => void
+const useAffect = (
+  asyncEffect: () => Promise<Canceler | void>,
+  dependencies: any[] = []
+) => {
+  const cancelerRef = useRef<Canceler | void>()
   useEffect(() => {
-    const initWeb3 = async () => {
-      if (window.ethereum) {
-        try {
-          const web3Instance = new Web3(window.ethereum);
-          const accounts = await web3Instance.eth.requestAccounts();
-          setAccount(accounts[0]);
-
-          const contractInstance = new web3Instance.eth.Contract(MainABI.contracts.Main.abi as any, contractAddress);
-          setMainContract(contractInstance);
-          setWeb3(web3Instance);
-        } catch (error) {
-          console.error("Error initializing Web3 or contract:", error);
-        }
-      } else {
-        console.error("Please install MetaMask.");
+    asyncEffect()
+      .then(canceler => (cancelerRef.current = canceler))
+      .catch(error => console.warn('Uncatched error', error))
+    return () => {
+      if (cancelerRef.current) {
+        cancelerRef.current()
+        cancelerRef.current = undefined
       }
-    };
-    initWeb3();
-  }, []);
+    }
+  }, dependencies)
+}
 
-  return (
-    <Router>
-      <Routes>s
-        <Route path="/" element={<Home />} />
-        <Route path="/cards" element={<Cards account={account} mainContract={mainContract} />} />
-        <Route path="/profile" element={<Profile account={account} mainContract={mainContract} web3={web3} />} />
-        <Route path="/booster" element={<Booster account={account} mainContract={mainContract} web3={web3} />} />
+export const useWallet = () => {
+  const [details, setDetails] = useState<ethereum.Details>()
+  const [contract, setContract] = useState<main.Main>()
+  useAffect(async () => {
+    const details_ = await ethereum.connect('metamask')
+    if (!details_) return
+    setDetails(details_)
+    const contract_ = await main.init(details_)
+    if (!contract_) return
+    setContract(contract_)
+  }, [])
+  return useMemo(() => {
+    if (!details || !contract) return
+    return { details, contract }
+  }, [details, contract])
+}
+
+export const App = () => {
+  const wallet = useWallet()
+  if (wallet)
+    return (
+      <>
+      <BrowserRouter>
+      <Routes>
+        
+          <Route path='/' element={<Home />} />
+          <Route path="/profile" element={<Profile wallet={wallet} />} />
+          <Route path='/booster' element={<Booster wallet={wallet} />} />
+          <Route path='/MarketPlace' element={<MarketPlace wallet={wallet} />} />
+      
       </Routes>
-    </Router>
-  );
-};
-
-export default App;
+    </BrowserRouter>
+    </>
+    )
+}

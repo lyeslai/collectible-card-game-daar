@@ -10,19 +10,17 @@
     "dev": "concurrently -c \"blue.bold,red.bold\" --names \"ethereum,frontend\" \"yarn --cwd contracts dev\" \"yarn --cwd frontend dev\""
   },
   "devDependencies": {
-    "@types/web3": "^1.0.20",
     "concurrently": "^7.5.0"
   },
-  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
   "dependencies": {
-    "@openzeppelin/contracts": "^5.1.0",
-    "axios": "^1.7.7",
-    "bootstrap": "^5.3.3",
-    "ethers": "^6.13.4",
-    "lucide-react": "^0.453.0",
-    "react-bootstrap": "^2.10.5",
-    "react-router-dom": "^6.27.0",
-    "uuid": "^10.0.0",
-    "web3": "^4.13.0"
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.16",
+    "@mui/lab": "^5.0.0-alpha.151",
+    "@mui/material": "^5.14.16",
+    "axios": "^1.5.1",
+    "pokemon-tcg-sdk-typescript": "^1.3.4",
+    "pokemontcgsdk": "^2.0.0",
+    "react-router-dom": "^6.17.0"
   }
 }
