@@ -1,140 +1,109 @@
+// Profile.tsx
+
 import React, { useEffect, useState } from 'react';
-import Web3 from 'web3';
 import { PokemonCard } from '../../Api/types';
-
-
 
 interface ProfileProps {
   account: string | null;
   mainContract: any;
-  web3: Web3 | null;
+  web3: any;
 }
 
 const Profile: React.FC<ProfileProps> = ({ account, mainContract, web3 }) => {
-  const [collections, setCollections] = useState<any[]>([]);
-  const [ownedNFTs, setOwnedNFTs] = useState<PokemonCard[]>([]);
-  const [status, setStatus] = useState<string>('');
+  const [ownedCollections, setOwnedCollections] = useState<any[]>([]);
+  const [boosterInfo, setBoosterInfo] = useState<any[]>([]);
 
   useEffect(() => {
-    if (!mainContract || !account || !web3) {
-      setStatus("Please connect your wallet and contract.");
-      return;
-    }
+    const fetchOwnedCollections = async () => {
+      if (!account || !mainContract) return;
 
-    const fetchCollections = async () => {
       try {
-        setStatus("Fetching collections...");
-        console.log("mainContract methods:", mainContract.methods);
-        console.log("Calling collectionCount...");
         const collectionCount = await mainContract.methods.collectionCount().call();
-        console.log("Collection count:", collectionCount);
-        // ...
-      
-        const collectionsData = [];
+        const collections = [];
 
         for (let i = 0; i < collectionCount; i++) {
-          const collectionAddress = await mainContract.methods.collections(i).call();
-          const collectionContract = new web3.eth.Contract(
-            [
-              { "constant": true, "inputs": [], "name": "name", "outputs": [{ "name": "", "type": "string" }], "type": "function" },
-              { "constant": true, "inputs": [], "name": "cardCount", "outputs": [{ "name": "", "type": "uint256" }], "type": "function" },
-              { "constant": true, "inputs": [], "name": "nextTokenId", "outputs": [{ "name": "", "type": "uint256" }], "type": "function" },
-              { "constant": true, "inputs": [{ "name": "tokenId", "type": "uint256" }], "name": "ownerOf", "outputs": [{ "name": "", "type": "address" }], "type": "function" }
-            ],
-            collectionAddress
-          );
-
-          const name = await collectionContract.methods.name().call();
-          const cardCount = await collectionContract.methods.cardCount().call();
-          const nextTokenId = await collectionContract.methods.nextTokenId().call();
-          
-          collectionsData.push({
-            id: i,
-            address: collectionAddress,
-            name,
-            cardCount,
-            nextTokenId
-          });
+          const collection = await mainContract.methods.collections(i).call();
+          collections.push(collection);
         }
 
-        setCollections(collectionsData);
-        setStatus("Collections loaded!");
+        setOwnedCollections(collections);
       } catch (error) {
         console.error("Error fetching collections:", error);
-        console.error("Error details:", error.message);
-        setStatus("Failed to load collections.");
       }
     };
 
-    const fetchOwnedNFTs = async () => {
-      if (!mainContract || !account || !web3) return;
+    const fetchBoosterInfo = async () => {
+      if (!account || !mainContract) return;
 
       try {
-        setStatus("Fetching owned NFTs...");
-        const nfts = [];
+        const boosterCount = await mainContract.methods.boosterCount().call();
+        const boosters = [];
 
-        for (const collection of collections) {
-          const collectionContract = new web3.eth.Contract(
-            [
-              { "constant": true, "inputs": [{ "name": "tokenId", "type": "uint256" }], "name": "ownerOf", "outputs": [{ "name": "", "type": "address" }], "type": "function" },
-              { "constant": true, "inputs": [{ "name": "tokenId", "type": "uint256" }], "name": "tokenURI", "outputs": [{ "name": "", "type": "string" }], "type": "function" }
-            ],
-            collection.address
-          );
-
-          for (let tokenId = 1; tokenId < collection.nextTokenId; tokenId++) {
-            const owner = await collectionContract.methods.ownerOf(tokenId).call();
-            if (owner.toLowerCase() === account.toLowerCase()) {
-              const tokenURI = await collectionContract.methods.tokenURI(tokenId).call();
-              nfts.push({ tokenId, collectionName: collection.name, tokenURI });
-            }
+        for (let i = 0; i < boosterCount; i++) {
+          const booster = await mainContract.methods.boosters(i).call();
+          if (booster.owner === account) {
+            boosters.push(booster);
           }
         }
 
-        setOwnedNFTs(nfts);
-        setStatus("Owned NFTs loaded!");
-        
+        setBoosterInfo(boosters);
       } catch (error) {
-        console.error("Error fetching owned NFTs:", error);
-        setStatus("Failed to load owned NFTs.");
+        console.error("Error fetching boosters:", error);
       }
     };
 
-    fetchCollections().then(fetchOwnedNFTs);
-  }, [mainContract, account, web3]);
+    fetchOwnedCollections();
+    fetchBoosterInfo();
+  }, [account, mainContract]);
 
-  if (!account || !mainContract || !web3) {
-    return <p>Please connect your wallet and ensure contract is loaded.</p>;
+  const handleRedeemBooster = async (boosterId: number) => {
+  if (!mainContract || !account) {
+    alert("Please connect your wallet and contract.");
+    return;
   }
+
+  try {
+    await mainContract.methods.redeemBooster(boosterId).send({ from: account });
+    alert("Booster redeemed successfully!");
+
+    // Mettre à jour les informations des boosters
+    setBoosterInfo(prevBoosterInfo =>
+      prevBoosterInfo.map(booster =>
+        booster.id === boosterId ? { ...booster, redeemed: true } : booster
+      )
+    );
+  } catch (error) {
+    console.error("Error redeeming booster:", error);
+    alert(`Error redeeming booster: ${error.message}`);
+  }
+};
 
   return (
     <div>
-      <h1>Profile</h1>
-      <p>Account: {account}</p>
-      <h2>Your Collections</h2>
-      <div>
-        {collections.map((collection) => (
-          <div key={collection.id}>
-            <h3>{collection.name}</h3>
-            <p>Address: {collection.address}</p>
+      <h1>My Profile</h1>
+
+      <section>
+        <h2>Owned Collections</h2>
+        {ownedCollections.map((collection, index) => (
+          <div key={index}>
+            <p>Name: {collection.name}</p>
             <p>Card Count: {collection.cardCount}</p>
-            <p>Next Token ID: {collection.nextTokenId}</p>
           </div>
         ))}
-      </div>
+      </section>
 
-      <h2>Your Owned NFTs</h2>
-      <div className="nfts-grid">
-        {ownedNFTs.map((nft, index) => (
-          <div key={index} className="nft-card">
-            <p>Collection: {nft.collectionName}</p>
-            <p>Token ID: {nft.tokenId}</p>
-            <img src={nft.tokenURI} alt={`Token ${nft.tokenId}`} width="100" height="100" />
+      <section>
+        <h2>Available Boosters</h2>
+        {boosterInfo.map((booster, index) => (
+          <div key={index}>
+            <p>Booster ID: {booster.id}</p>
+            <p>Redeemed: {booster.redeemed ? "Yes" : "No"}</p>
+            <button onClick={() => handleRedeemBooster(booster.id)}>
+              Redeem Booster
+            </button>
           </div>
         ))}
-      </div>
-
-      <p>{status}</p>
+      </section>
     </div>
   );
 };

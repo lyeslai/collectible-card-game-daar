@@ -4,7 +4,7 @@ import Web3 from 'web3';
 import Home from './pages/Home';
 import Cards from './pages/Cards';
 import Profile from './pages/Profile';
-
+import Booster from './pages/Booster'
 import MainABI from './contracts.json';
 
 const contractAddress = "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707";
@@ -43,6 +43,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/cards" element={<Cards account={account} mainContract={mainContract} />} />
         <Route path="/profile" element={<Profile account={account} mainContract={mainContract} web3={web3} />} />
+        <Route path="/booster" element={<Booster account={account} mainContract={mainContract} web3={web3} />} />
       </Routes>
     </Router>
   );

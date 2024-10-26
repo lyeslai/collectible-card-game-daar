@@ -36,26 +36,38 @@ export async function getCardsFromSet(setId: string): Promise<PokemonCard[]> {
   }
 }
 
+// Fonction pour créer un booster de 5 cartes aléatoires
 export async function createBooster(): Promise<{ boosterId: string, cards: PokemonCard[] }> {
-    try {
-      // Récupérer un set aléatoire de cartes pour le booster
-      const setsResponse = await axios.get(`${API_URL}sets`, { headers: { 'X-Api-Key': API_KEY } });
-      const sets = setsResponse.data.data;
-  
-      // Sélectionner un set au hasard pour créer le booster
-      const randomSetId = sets[Math.floor(Math.random() * sets.length)].id;
-      const cardsResponse = await axios.get(`${API_URL}cards?q=set.id:${randomSetId}`, { headers: { 'X-Api-Key': API_KEY } });
-      const cards = cardsResponse.data.data.slice(0, 5);  // Choisir 5 cartes aléatoires pour le booster
-  
-      // Générer un booster avec un identifiant unique
-      const boosterId = 'booster_' + Date.now();
-  
-      // Simuler la génération du booster (id + cartes) et les stocker
-      // Vous pouvez stocker cela dans une base de données ou une mémoire cache
-      return { boosterId, cards };
-    } catch (error) {
-      console.error('Erreur lors de la création du booster:', error);
-      throw error;
-    }
+  try {
+    // Récupérer tous les sets de cartes disponibles
+    const setsResponse = await axios.get<{ data: PokemonSet[] }>(`${API_URL}sets`, {
+      headers: { 'X-Api-Key': API_KEY },
+    });
+    const sets = setsResponse.data.data;
+
+    // Choisir un set au hasard
+    const randomSetId = sets[Math.floor(Math.random() * sets.length)].id;
+    const cardsResponse = await axios.get<{ data: PokemonCard[] }>(
+      `${API_URL}cards?q=set.id:${randomSetId}`,
+      { headers: { 'X-Api-Key': API_KEY } }
+    );
+    const allCards = cardsResponse.data.data;
+
+    // Mélanger les cartes et en sélectionner 5 aléatoirement
+    const selectedCards = allCards
+      .sort(() => 0.5 - Math.random())  // Mélange aléatoire
+      .slice(0, 5);  // Prendre les 5 premières cartes après le mélange
+
+    // Générer un identifiant unique pour le booster
+    const boosterId = `booster_${Date.now()}`;
+
+    // Retourner le booster
+    return { boosterId, cards: selectedCards };
+  } catch (error) {
+    console.error('Erreur lors de la création du booster:', error);
+    throw error;
   }
+}
+
+
   
