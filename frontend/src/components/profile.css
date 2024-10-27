@@ -1,16 +1,32 @@
-
-.title{
-    color: black;
-    margin-bottom: 3%;
-    text-align: center;
+/* Wrapper de la page Profile avec un fond */
+.profile-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+
+.title {
+  color: black;
+  text-align: center;
+  margin-bottom: 3%;
+}
+
 .grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 45px;
-  }
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 45px;
+  width: 100%;
+  max-width: 1200px;
+}
+
 .card-container {
-    text-align: center;
-    padding: 10px;
-  }
-  
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+}

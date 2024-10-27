@@ -2,7 +2,7 @@
 import pokemon from 'pokemontcgsdk'
 import React, { useState, useEffect } from 'react';
 import { getMarketPlaceCards, getUserCards, buyFromMarketplace } from '@/functions/functions';
-
+import backgroundImage from './emerald.jpg'; 
 import './MarketPlace.css';
 import { Checkbox } from '@mui/material';
 
@@ -107,6 +107,7 @@ const MarketPlace = ({ wallet }) => {
 
 
   return (
+    <div className="profile-wrapper" style={{ backgroundImage: `url(${backgroundImage})` }}>
     <div className="page-wrapper">
       <h1 className="title">MarketPlace</h1>
       <div className="grid-container" id="MyPokemonCards">
@@ -166,6 +167,7 @@ const MarketPlace = ({ wallet }) => {
           </div>
         </div>
       )}
+    </div>
     </div>
 
 

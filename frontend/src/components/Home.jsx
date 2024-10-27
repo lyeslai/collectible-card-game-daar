@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import './Home.css';
 import { Link } from 'react-router-dom';
+import backgroundImage from './bg-pokemon.jpg';
 
 const Home = () => {
   const [currentAccount, setCurrentAccount] = useState(null);
   const [pokemonData, setPokemonData] = useState([]);
-  
 
-  // Ethereum Interaction
   useEffect(() => {
-    
     async function enableEthereum() {
       try {
         await window.ethereum.request({ method: 'eth_requestAccounts' });
@@ -21,7 +19,6 @@ const Home = () => {
         }
       }
     }
-
 
     async function getAccount() {
       const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
@@ -44,7 +41,6 @@ const Home = () => {
     window.ethereum.request({ method: 'eth_accounts' }).then(handleAccountsChanged);
   }, [currentAccount]);
 
-  // Load Pokemon Cards
   useEffect(() => {
     function loadPokemonCards() {
       fetch('pokemon_data.json')
@@ -62,13 +58,17 @@ const Home = () => {
 
   return (
     <>
-      <div className="page-wrapper">
+      <div className="headline" style={{ backgroundImage: `url(${backgroundImage})` }}>
+        <h1>Pokemon Cards NFTs</h1>
 
-        <h2>Account: <span className="showAccount">{currentAccount}</span></h2>
-        <section className="headline">
-          <h1>Pokemon Cards NFTs</h1>
-          <p>Gotta catch them all !</p>
-        </section>
+      </div>
+      
+      <div className="account-wrapper">
+        <h2>Account Information</h2>
+        <div className="account-info">
+          <p>Account Address:</p>
+          <span className="showAccount">{currentAccount || 'Not Connected'}</span>
+        </div>
       </div>
 
       <div className="grid-container" id="pokemonCards">
@@ -79,9 +79,7 @@ const Home = () => {
         ))}
       </div>
     </>
+  );
+};
 
-  )
-}
-
-
-export default Home
+export default Home;
