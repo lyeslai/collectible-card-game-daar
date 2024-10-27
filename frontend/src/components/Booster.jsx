@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import PopupBooster from './PopupBooster';
 import { getAvalibleSet } from '@/functions/functions';
 import { openPack } from '../functions/functions';
+import backgroundImage from './Pikachu-Pokemon-Background.jpg'; 
 
 pokemon.configure({ apiKey: '2656b87d-c120-4542-b23b-f98c7e1df25a' });
 
@@ -95,16 +96,15 @@ const Booster = ({ wallet }) => {
 
 
   return (
-
+    <div className="profile-wrapper" style={{ backgroundImage: `url(${backgroundImage})` }}>
     <div className="page-wrapper">
+
       <h1 className="title">Boosters</h1>
       <h2> Choose a collection, Open a booster and Discover your cards !</h2>
       <div className="sets-container" id="pokemonCards">
         {pokemonSets.map((Set, index) => (
           <><Card className="setCard" sx={{ maxWidth: 345 }} >
-            <PopupBooster isVisible={boosterPopups[index]} onClose={hidePopup} set={Set} booster={lastBooster} >
-              {/* Additional content for the popup */}
-            </PopupBooster>
+
             <CardMedia className='cardImg'
               component="img"
               height="140"
@@ -131,7 +131,7 @@ const Booster = ({ wallet }) => {
       </div>
     </div>
 
-
+    </div>
 
   );
 

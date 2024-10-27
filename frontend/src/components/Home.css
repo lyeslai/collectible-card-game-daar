@@ -82,14 +82,14 @@ h1 {
   font-size: 2.5rem;
 }
 
-.headline p {
-  font-size: 1.2rem;
-}
+/* Grille de cartes */
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Affiche 4 cartes par ligne */
-  gap: 20px; /* Réduit l'écart entre les cartes pour optimiser l'espace */
+  grid-template-columns: repeat(4, 1fr); /* 4 cartes par ligne */
+  gap: 20px;
   padding: 20px;
+  max-width: 1200px; /* Optionnel : limite la largeur pour garder un alignement centré */
+  margin: 0 auto; /* Centre la grille */
 }
 
 .card-container {
@@ -101,5 +101,13 @@ h1 {
   transition: transform 0.2s ease;
 }
 
-  
-    
+.card-container:hover {
+  transform: translateY(-5px);
+}
+
+.card-container img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}

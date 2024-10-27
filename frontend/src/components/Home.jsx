@@ -60,7 +60,6 @@ const Home = () => {
     <>
       <div className="headline" style={{ backgroundImage: `url(${backgroundImage})` }}>
         <h1>Pokemon Cards NFTs</h1>
-
       </div>
       
       <div className="account-wrapper">
